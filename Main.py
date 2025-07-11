@@ -2,13 +2,17 @@ from selenium import webdriver
 from pages.home_page import HomePage
 from pages.Opinion_page import OpinionPage
 from pages.article_page import ArticlePage
+from selenium.webdriver.chrome.options import Options
 from Utils.translator_utils import translate_titles, find_repeated_words
 import time
 import asyncio
 
-
+options = Options()
+options.add_argument('--headless')
+options.add_argument('--no-sandbox')
+options.add_argument('--disable-dev-shm-usage')
 # Set up
-driver = webdriver.Chrome()
+driver = webdriver.Chrome(options=options)
 try:
     home = HomePage(driver)
     opinion = OpinionPage(driver)
