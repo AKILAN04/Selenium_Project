@@ -69,3 +69,10 @@ class BasePage:
         except Exception as e:
             print(f"Image not downloaded for: {title}. Error: {e}")
             return None
+
+    def close_if_exists(self, by_locator):
+        try:
+            self.wait.until(EC.element_to_be_clickable(by_locator)).click()
+            print(f"Closed overlay: {by_locator}")
+        except TimeoutException:
+            print(f"No overlay to close for: {by_locator}")
