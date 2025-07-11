@@ -27,7 +27,12 @@ try:
     titles = []
 
     for art in articles_info:
-        driver.get(art['url'])
+        driver.set_page_load_timeout(180)
+        try:
+            driver.get(art['url'])
+        except Exception as e:
+            print(f"Skipping article {art['url']} due to timeout: {e}")
+            continue
         time.sleep(3)
         content = article.get_content()
         contents.append(content)
