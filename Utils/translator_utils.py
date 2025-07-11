@@ -3,10 +3,10 @@ from collections import Counter
 
 translator = Translator()
 
-async def translate_titles(titles):
+def translate_titles(titles):
     translated = []
     for title in titles:
-        result = await translator.translate(title, dest='en')
+        result =  translator.translate(title, dest='en')
         translated.append(result.text)
     return translated
 

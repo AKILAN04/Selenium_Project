@@ -37,7 +37,7 @@ try:
     for t in titles:
         print(t)
 
-    translated = asyncio.run(translate_titles(titles))
+    translated = translate_titles(titles)
     print("\nTranslated Titles (English):")
     for t in translated:
         print(t)
