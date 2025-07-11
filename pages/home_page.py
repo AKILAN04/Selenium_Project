@@ -1,5 +1,6 @@
 from selenium.common import NoSuchElementException
 from selenium.webdriver.common.by import By
+from selenium.common.exceptions import TimeoutException
 from pages.base_page import BasePage
 
 class HomePage(BasePage):
@@ -8,7 +9,7 @@ class HomePage(BasePage):
     def agree_condition(self):
         try:
             self.click(self.AgreeButton)
-        except NoSuchElementException:
-            print("No agree  element")
+        except TimeoutException:
+            print("Agree button not found, skipping...")
     def go_to_opinion(self):
         self.click(self.OPINION_LINK)

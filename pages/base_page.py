@@ -3,6 +3,7 @@ import os
 import re
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.common.exceptions import TimeoutException
 
 class BasePage:
     def __init__(self, driver):
@@ -12,8 +13,14 @@ class BasePage:
     def open(self, url):
         self.driver.get(url)
 
-    def click(self, by_locator):
-        self.wait.until(EC.element_to_be_clickable(by_locator)).click()
+    def click(self, by_locator, skip_if_not_found=False):
+        try:
+            self.wait.until(EC.element_to_be_clickable(by_locator)).click()
+        except TimeoutException:
+            if skip_if_not_found:
+                print(f"Element {by_locator} not found, skipping click.")
+            else:
+                raise
 
     def get_text(self, by_locator):
         return self.wait.until(EC.visibility_of_element_located(by_locator)).text
