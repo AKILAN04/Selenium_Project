@@ -48,7 +48,11 @@ try:
         print(t)
 
     repeated = find_repeated_words(translated)
-    print("\nRepeated Words (>2 times):")
+    if(len(repeated) > 0):
+        print("\nRepeated Words (>2 times):")
+    else:
+        print("\nNo Repeated Words (>2 times)")
+
     for word, count in repeated.items():
         print(f"{word}: {count}")
 finally:

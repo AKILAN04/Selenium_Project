@@ -12,6 +12,8 @@ def translate_titles(titles):
 
 def find_repeated_words(translated_titles):
     all_words = " ".join(translated_titles).split()
+    print(all_words)
     counter = Counter(word.lower() for word in all_words)
+    print(counter)
     repeated = {word: count for word, count in counter.items() if count > 2}
     return repeated
